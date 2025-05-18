@@ -259,12 +259,11 @@ class LogicController extends Controller
             $pFirst      = $this->getAncestor($first, 1);            // ayah/ibu first
             $commonAnc   = $this->getAncestor($last, $removed + 2);  // ancestor di level yang sama
 
-            if ($pFirst && $commonAnc
-                && $pFirst->parent_id === $commonAnc->parent_id
+            if ($pFirst && $commonAnc && $pFirst->parent_id === $commonAnc->parent_id
             ) {
                 $u1  = $pFirst->urutan;
-                $u2  = optional($last->parent)->urutan;
-                $key = $u1 < $u2 ? 'old uncle' : 'young uncle';
+                $u2  = optional($commonAnc)->urutan; 
+                $key = ($u1 !== null && $u2 !== null && $u1 < $u2) ? 'old uncle' : 'young uncle';
                 return $relations[$key][$first->gender]." {$last->name}";
             }
         }
@@ -280,12 +279,11 @@ class LogicController extends Controller
             $pLast       = $this->getAncestor($last, 1);              // ayah/ibu last
             $commonAnc   = $this->getAncestor($first, $removed + 2);  // ancestor level yang sama
 
-            if ($pLast && $commonAnc
-                && $pLast->parent_id === $commonAnc->parent_id
+            if ($pLast && $commonAnc && $pLast->parent_id === $commonAnc->parent_id
             ) {
-                $u1  = $first->urutan;
-                $u2  = $pLast->urutan;
-                $key = $u1 < $u2 ? 'ponakan prunan' : 'ponakan';
+                $u1  = optional($commonAnc)->urutan;
+                $u2  = optional($pLast)->urutan;  
+                $key = ($u1 !== null && $u2 !== null && $u1 < $u2) ? 'ponakan prunan' : 'ponakan';
                 return $relations[$key][$first->gender]." {$last->name}";
             }
         }
