@@ -1,0 +1,1 @@
+<h2>hanya admin yang memiliki akses ini</h2>
