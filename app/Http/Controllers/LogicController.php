@@ -106,13 +106,13 @@ class LogicController extends Controller
                 }
             }
     
-            // Tambahkan parent
+            //  parent
             if ($current->parent && !isset($visited[$current->parent->id])) {
                 $visited[$current->parent->id] = true;
                 $queue[] = [$current->parent, array_merge($path, [$current->parent])];
             }
     
-            // Tambahkan saudara kandung
+            //  saudara kandung
             if ($current->parent) {
                 foreach ($current->parent->children as $sibling) {
                     if ($sibling->id !== $current->id && !isset($visited[$sibling->id])) {
@@ -268,9 +268,6 @@ class LogicController extends Controller
             }
         }
 
-        // test commit
-
-        // test cimmit 2
 
         //  Niece/Nephew once‐removed (dan lebih)
         if ($depth > 0) {

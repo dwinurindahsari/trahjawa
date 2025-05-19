@@ -131,12 +131,7 @@ class TreeController extends Controller
             'tree', 'members', 'tree_id', 'rootMembers',
             'person1', 'person2', 'relationshipDetails', 'relationshipDetailsReversed'
         ));
-        // Ambil data dari session jika tersedia
-        // $person1 = session('person1');
-        // $person2 = session('person2');
-        // $relationshipDetails = session('relationshipDetails');
     
-        // return view('admin.detail', compact('tree', 'members', 'tree_id', 'rootMembers','person1', 'person2', 'relationshipDetails'));
     }
 
 
